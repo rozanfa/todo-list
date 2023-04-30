@@ -1,10 +1,8 @@
-import { DeleteOutline } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardActions,
   CardContent,
-  IconButton,
   Typography,
 } from "@mui/material";
 import React from "react";

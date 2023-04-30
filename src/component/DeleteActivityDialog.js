@@ -2,28 +2,9 @@ import * as React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import {
-  Add,
-  Close,
-  DeleteOutline,
-  ExitToApp,
-  Image,
-} from "@mui/icons-material";
-import {
-  Button,
-  IconButton,
-  InputLabel,
-  List,
-  ListItem,
-  MenuList,
-  OutlinedInput,
-  Select,
-  Typography,
-} from "@mui/material";
+import { DeleteOutline } from "@mui/icons-material";
+import { Button, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { MenuItem, TabsListProvider } from "@mui/base";
-import ColorIndicator from "./ColorIndicator";
-import priorityColor from "../utils/Todo";
 import Warning from "../asset/warning.png";
 
 export default function DeleteActivityDialog({ activity, refetch }) {
@@ -82,7 +63,7 @@ export default function DeleteActivityDialog({ activity, refetch }) {
                 margin: "48px",
               }}
             >
-              <img width={80} height={80} src={Warning} />
+              <img width={80} height={80} src={Warning} alt="Warning" />
             </Box>
             <Typography textAlign="center">
               Apakah anda yakin menghapus activity <b>"{activity.title}"</b>?

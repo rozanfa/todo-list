@@ -3,24 +3,17 @@ import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Add, Close, ExitToApp } from "@mui/icons-material";
+import { Add, Close } from "@mui/icons-material";
 import {
   Button,
   Divider,
-  FormControl,
   IconButton,
-  InputLabel,
-  List,
-  ListItem,
-  MenuList,
   OutlinedInput,
   Select,
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import { MenuItem, TabsListProvider } from "@mui/base";
 import ColorIndicator from "./ColorIndicator";
 import priorityColor from "../utils/Todo";
 
