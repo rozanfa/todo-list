@@ -132,6 +132,7 @@ const ActivityList = () => {
           Berhasil menghapus activity
         </Alert>
       </Snackbar>
+      <div data-cy="modal-delete"></div>
     </Container>
   );
 };
