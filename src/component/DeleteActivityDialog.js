@@ -3,7 +3,12 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import { DeleteOutline } from "@mui/icons-material";
-import { Button, IconButton, Typography } from "@mui/material";
+import {
+  Button,
+  DialogTitle,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import Warning from "../asset/warning.png";
 
@@ -50,8 +55,15 @@ export default function DeleteActivityDialog({ activity, notify, refetch }) {
         maxWidth="xs"
         fullWidth
         data-cy="modal-delete"
-        onClick={(e) => e.stopPropagation()}
       >
+        <DialogTitle
+          justifyContent="space-between"
+          display="flex"
+          flexDirection="row"
+          alignItems="center"
+          variant="div"
+          minWidth="350px"
+        ></DialogTitle>
         <DialogContent>
           <Box
             display="flex"

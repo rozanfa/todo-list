@@ -16,17 +16,19 @@ const ActivityCard = ({ activity, notify, refetch }) => {
         justifyContent: "space-between",
         padding: "8px",
         borderRadius: "12px",
-        cursor: "pointer",
-        "&:hover": {
-          boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
-        },
       }}
-      onClick={() => {
-        navigate(`/activity/${activity.id}`);
-      }}
-      data-cy="activity-item"
     >
-      <CardContent>
+      <CardContent
+        onClick={() => {
+          navigate(`/activity/${activity.id}`);
+        }}
+        sx={{
+          cursor: "pointer",
+          width: "100%",
+          height: "100%",
+        }}
+        data-cy="activity-item"
+      >
         <Typography
           variant="p"
           fontWeight={"bold"}
