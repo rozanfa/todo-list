@@ -71,7 +71,7 @@ export default function PriorityMenu({ priority, handleSetPriority }) {
         aria-controls={openPriority ? "composition-menu" : undefined}
         aria-expanded={openPriority ? "true" : undefined}
         aria-haspopup="true"
-        data-cy="todo-sort-button"
+        data-cy="modal-add-priority-dropdown"
         sx={{
           border: "1px solid rgb(118, 118, 118)",
           marginRight: "12px",
