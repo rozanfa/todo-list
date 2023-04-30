@@ -5,15 +5,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Add, Close } from "@mui/icons-material";
-import {
-  Button,
-  Divider,
-  IconButton,
-  NativeSelect,
-  OutlinedInput,
-  Select,
-  Typography,
-} from "@mui/material";
+import { Button, Divider, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import ColorIndicator from "./ColorIndicator";
 import priorityColor from "../utils/Todo";
@@ -24,10 +16,6 @@ export default function AddTodoDialog({ activityId, refetch }) {
 
   const [title, setTitle] = React.useState("");
   const [priority, setPriority] = React.useState(null);
-
-  const handleChange = (event) => {
-    setPriority(event.target.value);
-  };
 
   const handleClickOpen = () => {
     setOpen(true);

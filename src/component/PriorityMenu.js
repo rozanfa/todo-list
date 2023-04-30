@@ -3,17 +3,7 @@ import Paper from "@mui/material/Paper";
 import MenuList from "@mui/material/MenuList";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import { ClickAwayListener, Popper, IconButton, Button } from "@mui/material";
-import { SwapVert } from "@mui/icons-material";
-import {
-  ArrowDownward,
-  ArrowUpward,
-  DoneOutlined,
-  ImportExport,
-  TextRotateUp,
-  TextRotationDown,
-} from "@mui/icons-material";
+import { ClickAwayListener, Popper, Button } from "@mui/material";
 
 const priorityText = (priority) => {
   switch (priority) {
