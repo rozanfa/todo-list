@@ -60,7 +60,6 @@ const ActivityCard = ({ activity, notify, refetch }) => {
           activity={activity}
           notify={notify}
           refetch={refetch}
-          data-cy="modal-delete"
         />
       </CardActions>
     </Card>

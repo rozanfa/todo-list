@@ -44,7 +44,13 @@ export default function DeleteActivityDialog({ activity, notify, refetch }) {
       >
         <DeleteOutline />
       </IconButton>
-      <Dialog open={open} onClose={handleClose} maxWidth="xs" fullWidth>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        maxWidth="xs"
+        fullWidth
+        data-cy="modal-delete"
+      >
         <DialogContent>
           <Box
             display="flex"
