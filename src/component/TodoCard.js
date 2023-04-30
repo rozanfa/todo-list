@@ -4,7 +4,6 @@ import {
   CardActions,
   CardContent,
   Checkbox,
-  Chip,
   IconButton,
   TextField,
   Typography,
