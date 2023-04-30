@@ -20,7 +20,6 @@ export default function SortMenu({ sort, handleSetSort }) {
   const anchorRef = React.useRef(null);
 
   const handleToggle = () => {
-    console.log("handleToggle");
     setOpenSort((prevOpen) => !prevOpen);
   };
 

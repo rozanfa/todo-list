@@ -9,6 +9,7 @@ import {
   Button,
   Divider,
   IconButton,
+  NativeSelect,
   OutlinedInput,
   Select,
   Typography,
@@ -16,6 +17,7 @@ import {
 import { Box } from "@mui/system";
 import ColorIndicator from "./ColorIndicator";
 import priorityColor from "../utils/Todo";
+import PriorityMenu from "./PriorityMenu";
 
 export default function AddTodoDialog({ activityId, refetch }) {
   const [open, setOpen] = React.useState(false);
@@ -123,40 +125,11 @@ export default function AddTodoDialog({ activityId, refetch }) {
               sx={{
                 display: "inline-block",
                 position: "absolute",
-                top: "238px",
-                left: "28px",
+                top: "236px",
+                left: "36px",
               }}
             />
-            <Select
-              native
-              value={priority}
-              onChange={handleChange}
-              input={<OutlinedInput />}
-              sx={{
-                width: "200px",
-                minWidth: "200px",
-              }}
-              data-cy="modal-add-priority-dropdown"
-            >
-              <option value={null} data-cy="modal-add-priority-item">
-                Pilih Prioritas
-              </option>
-              <option value={"very-high"} data-cy="modal-add-priority-item">
-                Very High
-              </option>
-              <option value={"high"} data-cy="modal-add-priority-item">
-                High
-              </option>
-              <option value={"normal"} data-cy="modal-add-priority-item">
-                Normal
-              </option>
-              <option value={"low"} data-cy="modal-add-priority-item">
-                Low
-              </option>
-              <option value={"very-low"} data-cy="modal-add-priority-item">
-                Very Low
-              </option>
-            </Select>
+            <PriorityMenu priority={priority} handleSetPriority={setPriority} />
           </Box>
         </DialogContent>
         <Divider />
