@@ -132,7 +132,7 @@ export default function AddTodoDialog({ activityId, refetch }) {
             sx={{
               width: "100px",
             }}
-            disabled={title === "" || priority === null}
+            disabled={title.trim() === "" || priority === null}
             data-cy="modal-add-save-button"
           >
             Simpan
