@@ -185,7 +185,12 @@ const TodoList = () => {
           />
         ) : (
           todos.map((todo) => (
-            <TodoCard key={todo.id} todo={todo} notify={notify} refetch={getActivityAndTodos} />
+            <TodoCard
+              key={todo.id}
+              todo={todo}
+              notify={notify}
+              refetch={getActivityAndTodos}
+            />
           ))
         )}
       </Box>
@@ -203,6 +208,7 @@ const TodoList = () => {
           Berhasil menghapus activity
         </Alert>
       </Snackbar>
+      <div data-cy="modal-delete"></div>
     </Container>
   );
 };
