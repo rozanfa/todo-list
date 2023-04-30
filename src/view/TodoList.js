@@ -1,6 +1,7 @@
 import { ArrowBackIos, Edit } from "@mui/icons-material";
 import {
   Box,
+  ClickAwayListener,
   Container,
   IconButton,
   TextField,
@@ -107,11 +108,13 @@ const TodoList = () => {
             />
           </IconButton>
           {isEditing ? (
-            <TextField
-              variant="standard"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
+            <ClickAwayListener onClickAway={handleRename}>
+              <TextField
+                variant="standard"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </ClickAwayListener>
           ) : (
             <Typography
               variant="h2"

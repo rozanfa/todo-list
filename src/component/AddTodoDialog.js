@@ -123,19 +123,18 @@ export default function AddTodoDialog({ activityId, refetch }) {
               sx={{
                 display: "inline-block",
                 position: "absolute",
-                top: "238px",
-                left: "42px",
+                top: "232px",
+                left: "38px",
               }}
             />
-            <Select
-              native
+            <select
               value={priority}
               onChange={handleChange}
-              input={<OutlinedInput />}
-              sx={{
+              style={{
                 width: "200px",
-                paddingLeft: "20px",
+                paddingLeft: "30px",
                 minWidth: "200px",
+                padding: "10px",
               }}
               data-cy="modal-add-priority-dropdown"
             >
@@ -157,7 +156,7 @@ export default function AddTodoDialog({ activityId, refetch }) {
               <option value={"very-low"} data-cy="modal-add-priority-item">
                 Very Low
               </option>
-            </Select>
+            </select>
           </Box>
         </DialogContent>
         <Divider />
