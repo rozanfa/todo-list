@@ -84,8 +84,12 @@ const TodoCard = ({ todo, refetch }) => {
           }}
           checked={!todo.is_active}
           onClick={handleCheck}
+          data-cy="todo-item-checkbox"
         />
-        <ColorIndicator color={priorityColor(todo.priority)} />
+        <ColorIndicator
+          color={priorityColor(todo.priority)}
+          data-cy="todo-item-priority-indicator"
+        />
         {isEditing ? (
           <TextField
             variant="standard"
@@ -100,6 +104,7 @@ const TodoCard = ({ todo, refetch }) => {
             sx={{
               textDecorationLine: !todo.is_active ? "line-through" : "none",
             }}
+            data-cy="todo-item-title"
           >
             {title}
           </Typography>
@@ -128,7 +133,11 @@ const TodoCard = ({ todo, refetch }) => {
           component="div"
           color="text.secondary"
         ></Typography>
-        <IconButton size="small" onClick={handleDelete}>
+        <IconButton
+          size="small"
+          onClick={handleDelete}
+          data-cy="todo-item-delete-button"
+        >
           <DeleteOutline />
         </IconButton>
       </CardActions>

@@ -64,6 +64,7 @@ const ActivityList = () => {
             variant="contained"
             startIcon={<Add />}
             onClick={handleAddButton}
+            data-cy="activity-add-button"
           >
             Tambah
           </Button>

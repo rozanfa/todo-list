@@ -66,6 +66,7 @@ export default function SortMenu({ sort, handleSetSort }) {
         aria-controls={openSort ? "composition-menu" : undefined}
         aria-expanded={openSort ? "true" : undefined}
         aria-haspopup="true"
+        data-cy="todo-sort-button"
       >
         <SwapVert />
       </IconButton>
@@ -86,6 +87,11 @@ export default function SortMenu({ sort, handleSetSort }) {
                   handleSetSort("terbaru");
                   setOpenSort(false);
                 }}
+                data-cy={
+                  sort === "terbaru"
+                    ? "sort-selection-selected"
+                    : "sort-selection"
+                }
               >
                 <ListItemIcon>
                   <ArrowDownward fontSize="small" />
@@ -98,6 +104,11 @@ export default function SortMenu({ sort, handleSetSort }) {
                   handleSetSort("terlama");
                   setOpenSort(false);
                 }}
+                data-cy={
+                  sort === "terlama"
+                    ? "sort-selection-selected"
+                    : "sort-selection"
+                }
               >
                 <ListItemIcon>
                   <ArrowUpward fontSize="small" />
@@ -110,6 +121,11 @@ export default function SortMenu({ sort, handleSetSort }) {
                   handleSetSort("nama-a-z");
                   setOpenSort(false);
                 }}
+                data-cy={
+                  sort === "nama-a-z"
+                    ? "sort-selection-selected"
+                    : "sort-selection"
+                }
               >
                 <ListItemIcon>
                   <TextRotationDown fontSize="small" />
@@ -122,6 +138,11 @@ export default function SortMenu({ sort, handleSetSort }) {
                   handleSetSort("nama-z-a");
                   setOpenSort(false);
                 }}
+                data-cy={
+                  sort === "nama-z-a"
+                    ? "sort-selection-selected"
+                    : "sort-selection"
+                }
               >
                 <ListItemIcon>
                   <TextRotateUp fontSize="small" />
@@ -134,6 +155,11 @@ export default function SortMenu({ sort, handleSetSort }) {
                   handleSetSort("belum-selesai");
                   setOpenSort(false);
                 }}
+                data-cy={
+                  sort === "belum-selesai"
+                    ? "sort-selection-selected"
+                    : "sort-selection"
+                }
               >
                 <ListItemIcon>
                   <ImportExport fontSize="small" />

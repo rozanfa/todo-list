@@ -56,7 +56,11 @@ export default function DeleteActivityDialog({ activity, refetch }) {
 
   return (
     <div>
-      <IconButton size="small" onClick={handleClickOpen}>
+      <IconButton
+        size="small"
+        onClick={handleClickOpen}
+        data-cy="activity-item-delete-button"
+      >
         <DeleteOutline />
       </IconButton>
       <Dialog

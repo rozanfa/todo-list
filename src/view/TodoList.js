@@ -101,6 +101,7 @@ const TodoList = () => {
               onClick={() => {
                 navigate("/activity");
               }}
+              data-cy="todo-back-button"
             />
           </IconButton>
           {isEditing ? (
@@ -110,7 +111,12 @@ const TodoList = () => {
               onChange={(e) => setTitle(e.target.value)}
             />
           ) : (
-            <Typography variant="h2" margin="auto" onClick={handleRename}>
+            <Typography
+              variant="h2"
+              margin="auto"
+              onClick={handleRename}
+              data-cy="todo-title"
+            >
               {title}
             </Typography>
           )}
@@ -120,6 +126,7 @@ const TodoList = () => {
               marginLeft: "16px",
             }}
             onClick={handleRename}
+            data-cy="todo-title-edit-button"
           >
             <Edit />
           </IconButton>

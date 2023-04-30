@@ -31,6 +31,7 @@ const ActivityCard = ({ activity, refetch }) => {
       onClick={() => {
         navigate(`/activity/${activity.id}`);
       }}
+      data-cy="activity-item"
     >
       <CardContent>
         <Typography
@@ -38,6 +39,7 @@ const ActivityCard = ({ activity, refetch }) => {
           fontWeight={"bold"}
           component="div"
           textAlign={"left"}
+          data-cy="activity-item-title"
         >
           {activity.title}
         </Typography>
@@ -54,6 +56,7 @@ const ActivityCard = ({ activity, refetch }) => {
           variant="p"
           component="div"
           color="text.secondary"
+          data-cy="activity-item-date"
         >
           {new Date(activity.created_at).toLocaleDateString(
             "id-ID",

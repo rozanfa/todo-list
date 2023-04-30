@@ -24,11 +24,11 @@ import { MenuItem, TabsListProvider } from "@mui/base";
 import ColorIndicator from "./ColorIndicator";
 import priorityColor from "../utils/Todo";
 
-export default function AddTodoDialog({ activityId, refetch }) {
+export default function EditTodoDialog({ todo }) {
   const [open, setOpen] = React.useState(false);
 
-  const [title, setTitle] = React.useState("");
-  const [priority, setPriority] = React.useState("very-high");
+  const [title, setTitle] = React.useState(todo.title);
+  const [priority, setPriority] = React.useState(todo.priority);
 
   const handleChange = (event) => {
     setPriority(event.target.value);
@@ -71,12 +71,7 @@ export default function AddTodoDialog({ activityId, refetch }) {
 
   return (
     <div>
-      <Button
-        variant="contained"
-        startIcon={<Add />}
-        onClick={handleClickOpen}
-        data-cy="todo-add-button"
-      >
+      <Button variant="contained" startIcon={<Add />} onClick={handleClickOpen}>
         Tambah
       </Button>
       <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
@@ -89,20 +84,14 @@ export default function AddTodoDialog({ activityId, refetch }) {
           minWidth="350px"
         >
           Tambah List Item
-          <IconButton
-            onClick={handleClose}
-            variant="contained"
-            data-cy="modal-add-close-button"
-          >
+          <IconButton onClick={handleClose} variant="contained">
             <Close />
           </IconButton>
         </DialogTitle>
         <Divider />
         <DialogContent>
           <Box>
-            <Typography variant="subtitle1" data-cy="modal-add-name-title">
-              NAMA LIST ITEM
-            </Typography>
+            <Typography variant="subtitle1">NAMA LIST ITEM</Typography>
             <TextField
               autoFocus
               margin="dense"
@@ -114,7 +103,6 @@ export default function AddTodoDialog({ activityId, refetch }) {
                 marginTop: "2px",
                 width: "100%",
               }}
-              data-cy="modal-add-name-input"
             />
           </Box>
           <Box marginTop={"12px"}>
@@ -138,7 +126,6 @@ export default function AddTodoDialog({ activityId, refetch }) {
                 paddingLeft: "20px",
                 minWidth: "200px",
               }}
-              data-cy="modal-add-priority-item"
             >
               <option value={"very-high"}>Very High</option>
               <option value={"high"}>High</option>
@@ -161,7 +148,6 @@ export default function AddTodoDialog({ activityId, refetch }) {
               width: "100px",
             }}
             disabled={title === ""}
-            data-cy="modal-add-save-button"
           >
             Simpan
           </Button>
