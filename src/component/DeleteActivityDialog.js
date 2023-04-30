@@ -1,15 +1,16 @@
 import * as React from "react";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import { Add, Close, ExitToApp } from "@mui/icons-material";
+import {
+  Add,
+  Close,
+  DeleteOutline,
+  ExitToApp,
+  Image,
+} from "@mui/icons-material";
 import {
   Button,
-  Divider,
-  FormControl,
   IconButton,
   InputLabel,
   List,
@@ -23,133 +24,104 @@ import { Box } from "@mui/system";
 import { MenuItem, TabsListProvider } from "@mui/base";
 import ColorIndicator from "./ColorIndicator";
 import priorityColor from "../utils/Todo";
+import Warning from "../asset/warning.png";
 
-export default function AddTodoDialog({ activityId, refetch }) {
+export default function DeleteActivityDialog({ activity, refetch }) {
   const [open, setOpen] = React.useState(false);
 
-  const [title, setTitle] = React.useState("");
-  const [priority, setPriority] = React.useState("very-high");
-
-  const handleChange = (event) => {
-    setPriority(event.target.value);
-  };
-
-  const handleClickOpen = () => {
+  const handleClickOpen = (e) => {
+    e.stopPropagation();
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = (e) => {
+    e.stopPropagation();
     setOpen(false);
   };
 
   const backendUrl = process.env.REACT_APP_BACKEND_BASE_URL;
 
-  const submitForm = async () => {
-    const data = {
-      title: title,
-      priority: priority,
-      activity_group_id: activityId,
-    };
-
-    console.log(backendUrl);
-
-    await fetch(`${backendUrl}/todo-items`, {
-      method: "POST",
+  const submitForm = async (e) => {
+    e.stopPropagation();
+    await fetch(`${backendUrl}/activity-groups/${activity.id}`, {
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
     });
 
     refetch();
-    handleClose();
-  };
-
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
+    handleClose(e);
   };
 
   return (
     <div>
-      <IconButton size="small">
+      <IconButton size="small" onClick={handleClickOpen}>
         <DeleteOutline />
       </IconButton>
-      <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-        <DialogTitle
-          justifyContent="space-between"
-          display="flex"
-          flexDirection="row"
-          alignItems="center"
-          variant="div"
-          minWidth="350px"
-        >
-          Tambah List Item
-          <IconButton onClick={handleClose} variant="contained">
-            <Close />
-          </IconButton>
-        </DialogTitle>
-        <Divider />
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        maxWidth="xs"
+        fullWidth
+        onClick={(e) => e.stopPropagation()}
+      >
         <DialogContent>
-          <Box>
-            <Typography variant="subtitle1">NAMA LIST ITEM</Typography>
-            <TextField
-              autoFocus
-              margin="dense"
-              fullWidth
-              variant="outlined"
-              placeholder="Tambahkan nama list item"
-              onChange={handleTitleChange}
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Box
               sx={{
-                marginTop: "2px",
-                width: "100%",
-              }}
-            />
-          </Box>
-          <Box marginTop={"12px"}>
-            <Typography variant="subtitle1">PRIORITY</Typography>
-            <ColorIndicator
-              color={priorityColor(priority)}
-              sx={{
-                display: "inline-block",
-                position: "absolute",
-                top: "238px",
-                left: "42px",
-              }}
-            />
-            <Select
-              native
-              value={priority}
-              onChange={handleChange}
-              input={<OutlinedInput />}
-              sx={{
-                width: "200px",
-                paddingLeft: "20px",
-                minWidth: "200px",
+                margin: "48px",
               }}
             >
-              <option value={"very-high"}>Very High</option>
-              <option value={"high"}>High</option>
-              <option value={"normal"}>Normal</option>
-              <option value={"low"}>Low</option>
-              <option value={"very-low"}>Very Low</option>
-            </Select>
+              <img width={80} height={80} src={Warning} />
+            </Box>
+            <Typography textAlign="center">
+              Apakah anda yakin menghapus activity <b>"{activity.title}"</b>?
+            </Typography>
           </Box>
         </DialogContent>
-        <Divider />
         <DialogActions
           sx={{
             margin: "12px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: "24px",
           }}
         >
+          <Button
+            variant="contained"
+            onClick={handleClose}
+            sx={{
+              width: "100px",
+              backgroundColor: "#F4F4F4",
+              color: "#000000",
+              "&:hover": {
+                backgroundColor: "#E4E4E4",
+              },
+              marginX: "12px",
+            }}
+          >
+            Batal
+          </Button>
           <Button
             variant="contained"
             onClick={submitForm}
             sx={{
               width: "100px",
+              backgroundColor: "#ED4C5C",
+              "&:hover": {
+                backgroundColor: "#CC3C4C",
+              },
+              marginX: "12px",
             }}
-            disabled={title === ""}
           >
-            Simpan
+            Hapus
           </Button>
         </DialogActions>
       </Dialog>

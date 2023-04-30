@@ -16,6 +16,25 @@ const TodoList = () => {
   const params = useParams();
   const [todos, setTodos] = React.useState([]);
   const [activity, setActivity] = React.useState({});
+  const [sort, setSort] = React.useState("terbaru");
+
+  const handleSetSort = (value) => {
+    setSort(value);
+    const newTodo = todos.sort((a, b) => {
+      if (value === "terbaru") {
+        return b.id - a.id;
+      } else if (value === "terlama") {
+        return a.id - b.id;
+      } else if (value === "nama-a-z") {
+        return a.title.localeCompare(b.title);
+      } else if (value === "nama-z-a") {
+        return b.title.localeCompare(a.title);
+      } else if (value === "belum-selesai") {
+        return b.is_active - a.is_active;
+      }
+    });
+    setTodos(newTodo);
+  };
 
   const [isEditing, setIsEditing] = React.useState(false);
   const [title, setTitle] = React.useState("");
@@ -107,7 +126,7 @@ const TodoList = () => {
             display: "flex",
           }}
         >
-          <SortMenu />
+          <SortMenu sort={sort} handleSetSort={handleSetSort} />
           <AddTodoDialog
             activityId={activity.id}
             refetch={getActivityAndTodos}

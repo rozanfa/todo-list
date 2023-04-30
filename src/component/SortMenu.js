@@ -22,7 +22,7 @@ import {
   TextRotationDown,
 } from "@mui/icons-material";
 
-export default function SortMenu({}) {
+export default function SortMenu({ sort, handleSetSort }) {
   const [openSort, setOpenSort] = React.useState(false);
   const anchorRef = React.useRef(null);
 
@@ -81,41 +81,65 @@ export default function SortMenu({}) {
               id="menu-list-grow"
               onKeyDown={handleListKeyDown}
             >
-              <MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleSetSort("terbaru");
+                  setOpenSort(false);
+                }}
+              >
                 <ListItemIcon>
                   <ArrowDownward fontSize="small" />
                 </ListItemIcon>
                 <ListItemText>Terbaru</ListItemText>
-                <DoneOutlined />
+                {sort === "terbaru" && <DoneOutlined />}
               </MenuItem>
-              <MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleSetSort("terlama");
+                  setOpenSort(false);
+                }}
+              >
                 <ListItemIcon>
                   <ArrowUpward fontSize="small" />
                 </ListItemIcon>
                 <ListItemText>Terlama</ListItemText>
-                <DoneOutlined />
+                {sort === "terlama" && <DoneOutlined />}
               </MenuItem>
-              <MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleSetSort("nama-a-z");
+                  setOpenSort(false);
+                }}
+              >
                 <ListItemIcon>
                   <TextRotationDown fontSize="small" />
                 </ListItemIcon>
                 <ListItemText>A-Z</ListItemText>
-                <DoneOutlined />
+                {sort === "nama-a-z" && <DoneOutlined />}
               </MenuItem>
-              <MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleSetSort("nama-z-a");
+                  setOpenSort(false);
+                }}
+              >
                 <ListItemIcon>
                   <TextRotateUp fontSize="small" />
                 </ListItemIcon>
                 <ListItemText>Z-A</ListItemText>
-                <DoneOutlined />
+                {sort === "nama-z-a" && <DoneOutlined />}
               </MenuItem>
-              <Divider />
-              <MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleSetSort("belum-selesai");
+                  setOpenSort(false);
+                }}
+              >
                 <ListItemIcon>
                   <ImportExport fontSize="small" />
                 </ListItemIcon>
                 <ListItemText>Belum Selesai</ListItemText>
-                <DoneOutlined />
+                {sort === "belum-selesai" && <DoneOutlined />}
               </MenuItem>
             </MenuList>
           </ClickAwayListener>

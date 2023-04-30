@@ -8,8 +8,9 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import DeleteActivityDialog from "./DeleteActivityDialog";
 
-const ActivityCard = ({ activity }) => {
+const ActivityCard = ({ activity, refetch }) => {
   let navigate = useNavigate();
   const dateOptions = { year: "numeric", month: "long", day: "numeric" };
   return (
@@ -59,9 +60,7 @@ const ActivityCard = ({ activity }) => {
             dateOptions
           )}
         </Typography>
-        <IconButton size="small">
-          <DeleteOutline />
-        </IconButton>
+        <DeleteActivityDialog activity={activity} refetch={refetch} />
       </CardActions>
     </Card>
   );

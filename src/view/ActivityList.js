@@ -8,11 +8,29 @@ const ActivityList = () => {
 
   const backendUrl = process.env.REACT_APP_BACKEND_BASE_URL;
 
-  React.useEffect(() => {
+  const getActivities = async () => {
     fetch(`${backendUrl}/activity-groups`)
       .then((response) => response.json())
       .then((data) => setActivities(data.data));
+  };
+
+  React.useEffect(() => {
+    getActivities();
   }, []);
+
+  const handleAddButton = async () => {
+    const data = {
+      title: "New Activity",
+    };
+    await fetch(`${backendUrl}/activity-groups`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    getActivities();
+  };
 
   return (
     <Container maxWidth="md">
@@ -39,7 +57,11 @@ const ActivityList = () => {
             display: "flex",
           }}
         >
-          <Button variant="contained" startIcon={<Add />}>
+          <Button
+            variant="contained"
+            startIcon={<Add />}
+            onClick={handleAddButton}
+          >
             Tambah
           </Button>
         </Box>
@@ -54,10 +76,16 @@ const ActivityList = () => {
             marginRight: "20px",
             marginBottom: "20px",
           },
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         {activities.map((activity) => (
-          <ActivityCard key={activity.id} activity={activity} />
+          <ActivityCard
+            key={activity.id}
+            activity={activity}
+            refetch={getActivities}
+          />
         ))}
       </Box>
     </Container>
