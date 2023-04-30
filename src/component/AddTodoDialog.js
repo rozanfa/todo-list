@@ -124,7 +124,7 @@ export default function AddTodoDialog({ activityId, refetch }) {
                 display: "inline-block",
                 position: "absolute",
                 top: "232px",
-                left: "38px",
+                left: "40px",
               }}
             />
             <select
@@ -132,9 +132,9 @@ export default function AddTodoDialog({ activityId, refetch }) {
               onChange={handleChange}
               style={{
                 width: "200px",
-                paddingLeft: "30px",
                 minWidth: "200px",
                 padding: "10px",
+                paddingLeft: "30px",
               }}
               data-cy="modal-add-priority-dropdown"
             >
