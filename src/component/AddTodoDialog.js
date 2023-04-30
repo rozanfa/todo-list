@@ -21,7 +21,7 @@ export default function AddTodoDialog({ activityId, refetch }) {
   const [open, setOpen] = React.useState(false);
 
   const [title, setTitle] = React.useState("");
-  const [priority, setPriority] = React.useState("very-high");
+  const [priority, setPriority] = React.useState(null);
 
   const handleChange = (event) => {
     setPriority(event.target.value);
@@ -72,7 +72,13 @@ export default function AddTodoDialog({ activityId, refetch }) {
       >
         Tambah
       </Button>
-      <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        maxWidth="md"
+        fullWidth
+        data-cy="modal-add"
+      >
         <DialogTitle
           justifyContent="space-between"
           display="flex"
@@ -131,13 +137,26 @@ export default function AddTodoDialog({ activityId, refetch }) {
                 paddingLeft: "20px",
                 minWidth: "200px",
               }}
-              data-cy="modal-add-priority-item"
+              data-cy="modal-add-priority-dropdown"
             >
-              <option value={"very-high"}>Very High</option>
-              <option value={"high"}>High</option>
-              <option value={"normal"}>Normal</option>
-              <option value={"low"}>Low</option>
-              <option value={"very-low"}>Very Low</option>
+              <option value={null} data-cy="modal-add-priority-item">
+                Pilih Prioritas
+              </option>
+              <option value={"very-high"} data-cy="modal-add-priority-item">
+                Very High
+              </option>
+              <option value={"high"} data-cy="modal-add-priority-item">
+                High
+              </option>
+              <option value={"normal"} data-cy="modal-add-priority-item">
+                Normal
+              </option>
+              <option value={"low"} data-cy="modal-add-priority-item">
+                Low
+              </option>
+              <option value={"very-low"} data-cy="modal-add-priority-item">
+                Very Low
+              </option>
             </Select>
           </Box>
         </DialogContent>
@@ -153,7 +172,7 @@ export default function AddTodoDialog({ activityId, refetch }) {
             sx={{
               width: "100px",
             }}
-            disabled={title === ""}
+            disabled={title === "" || priority === null}
             data-cy="modal-add-save-button"
           >
             Simpan

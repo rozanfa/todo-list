@@ -160,7 +160,11 @@ const TodoList = () => {
         justifyContent="center"
       >
         {isLoaded && todos.length === 0 ? (
-          <img src={TodosEmpty} alt="Buat item list kamu" />
+          <img
+            src={TodosEmpty}
+            alt="Buat item list kamu"
+            data-cy="todo-empty-state"
+          />
         ) : (
           todos.map((todo) => (
             <TodoCard key={todo.id} todo={todo} refetch={getActivityAndTodos} />
