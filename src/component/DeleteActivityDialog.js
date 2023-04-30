@@ -50,6 +50,7 @@ export default function DeleteActivityDialog({ activity, notify, refetch }) {
         maxWidth="xs"
         fullWidth
         data-cy="modal-delete"
+        onClick={(e) => e.stopPropagation()}
       >
         <DialogContent>
           <Box
