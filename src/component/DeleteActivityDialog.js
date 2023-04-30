@@ -98,6 +98,7 @@ export default function DeleteActivityDialog({ activity, notify, refetch }) {
             Batal
           </Button>
           <Button
+            data-cy="modal-delete-confirm-button"
             variant="contained"
             onClick={submitForm}
             sx={{
