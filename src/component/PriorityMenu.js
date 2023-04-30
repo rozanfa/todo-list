@@ -110,12 +110,12 @@ export default function PriorityMenu({ priority, handleSetPriority }) {
               </MenuItem>
               <MenuItem
                 onClick={() => {
-                  handleSetPriority("medium");
+                  handleSetPriority("normal");
                   setOpenPriority(false);
                 }}
                 data-cy="modal-add-priority-item"
               >
-                <ListItemText>Medium</ListItemText>
+                <ListItemText>Normal</ListItemText>
               </MenuItem>
               <MenuItem
                 onClick={() => {
