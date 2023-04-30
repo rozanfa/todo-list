@@ -11,8 +11,8 @@ const priorityText = (priority) => {
       return "Very Low";
     case "low":
       return "Low";
-    case "medium":
-      return "Medium";
+    case "normal":
+      return "Normal";
     case "high":
       return "High";
     case "very-high":
