@@ -34,6 +34,7 @@ const TodoList = () => {
       } else if (value === "belum-selesai") {
         return b.is_active - a.is_active;
       }
+      return true;
     });
     setTodos(newTodo);
   };
@@ -57,6 +58,7 @@ const TodoList = () => {
 
   React.useEffect(() => {
     getActivityAndTodos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRename = async () => {
