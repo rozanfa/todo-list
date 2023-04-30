@@ -1,4 +1,4 @@
-import { DeleteOutline, Edit } from "@mui/icons-material";
+import { Edit } from "@mui/icons-material";
 import {
   Card,
   CardActions,
@@ -11,8 +11,9 @@ import {
 import React from "react";
 import priorityColor from "../utils/Todo";
 import ColorIndicator from "./ColorIndicator";
+import DeleteTodoDialog from "./DeleteTodoDialog";
 
-const TodoCard = ({ todo, refetch }) => {
+const TodoCard = ({ todo, notify, refetch }) => {
   const backendUrl = process.env.REACT_APP_BACKEND_BASE_URL;
 
   const [isEditing, setIsEditing] = React.useState(false);
@@ -29,13 +30,6 @@ const TodoCard = ({ todo, refetch }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    });
-    refetch();
-  };
-
-  const handleDelete = async () => {
-    await fetch(`${backendUrl}/todo-items/${todo.id}`, {
-      method: "DELETE",
     });
     refetch();
   };
@@ -132,13 +126,7 @@ const TodoCard = ({ todo, refetch }) => {
           component="div"
           color="text.secondary"
         ></Typography>
-        <IconButton
-          size="small"
-          onClick={handleDelete}
-          data-cy="todo-item-delete-button"
-        >
-          <DeleteOutline />
-        </IconButton>
+        <DeleteTodoDialog todo={todo} notify={notify} refetch={refetch} />
       </CardActions>
     </Card>
   );

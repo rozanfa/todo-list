@@ -1,9 +1,11 @@
 import { ArrowBackIos, Edit } from "@mui/icons-material";
 import {
+  Alert,
   Box,
   ClickAwayListener,
   Container,
   IconButton,
+  Snackbar,
   TextField,
   Typography,
 } from "@mui/material";
@@ -20,6 +22,7 @@ const TodoList = () => {
   const [activity, setActivity] = React.useState({});
   const [sort, setSort] = React.useState("terbaru");
   const [isLoaded, setIsLoaded] = React.useState(false);
+  const [openSnackbar, setOpenSnackbar] = React.useState(false);
 
   const handleSetSort = (value) => {
     setSort(value);
@@ -79,6 +82,18 @@ const TodoList = () => {
     } else {
       setIsEditing(true);
     }
+  };
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
+
+  const notify = () => {
+    setOpenSnackbar(true);
   };
 
   return (
@@ -170,10 +185,24 @@ const TodoList = () => {
           />
         ) : (
           todos.map((todo) => (
-            <TodoCard key={todo.id} todo={todo} refetch={getActivityAndTodos} />
+            <TodoCard key={todo.id} todo={todo} notify={notify} refetch={getActivityAndTodos} />
           ))
         )}
       </Box>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert
+          onClose={handleSnackbarClose}
+          severity="success"
+          sx={{ position: "fixed", bottom: "16px", left: "16px" }}
+          data-cy="modal-information"
+        >
+          Berhasil menghapus activity
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };

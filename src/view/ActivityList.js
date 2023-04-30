@@ -129,7 +129,7 @@ const ActivityList = () => {
           sx={{ position: "fixed", bottom: "16px", left: "16px" }}
           data-cy="modal-information"
         >
-          Berhasil menghapus activity
+          Berhasil menghapus todo
         </Alert>
       </Snackbar>
       <div data-cy="modal-delete"></div>
