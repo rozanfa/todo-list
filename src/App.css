@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.Content {
+  margin-top: 80px;
+}
+
+body {
+  background-color: #f4f4f4;
+}
