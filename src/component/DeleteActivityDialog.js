@@ -7,9 +7,8 @@ import { Button, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Warning from "../asset/warning.png";
 
-export default function DeleteActivityDialog({ activity, refetch }) {
+export default function DeleteActivityDialog({ activity, notify, refetch }) {
   const [open, setOpen] = React.useState(false);
-
   const handleClickOpen = (e) => {
     e.stopPropagation();
     setOpen(true);
@@ -33,6 +32,7 @@ export default function DeleteActivityDialog({ activity, refetch }) {
 
     refetch();
     handleClose(e);
+    notify();
   };
 
   return (
@@ -44,13 +44,7 @@ export default function DeleteActivityDialog({ activity, refetch }) {
       >
         <DeleteOutline />
       </IconButton>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        maxWidth="xs"
-        fullWidth
-        onClick={(e) => e.stopPropagation()}
-      >
+      <Dialog open={open} onClose={handleClose} maxWidth="xs" fullWidth>
         <DialogContent>
           <Box
             display="flex"
@@ -91,6 +85,7 @@ export default function DeleteActivityDialog({ activity, refetch }) {
               },
               marginX: "12px",
             }}
+            data-cy="modal-delete-cancel-button"
           >
             Batal
           </Button>

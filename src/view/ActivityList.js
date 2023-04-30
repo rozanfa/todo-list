@@ -1,12 +1,18 @@
 import { Add } from "@mui/icons-material";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Snackbar, Typography } from "@mui/material";
 import React from "react";
 import ActivityCard from "../component/ActivityCard";
 import ActivityEmpty from "../asset/getting-started.png";
+import MuiAlert from "@mui/material/Alert";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const ActivityList = () => {
   const [activities, setActivities] = React.useState([]);
   const [isLoaded, setIsLoaded] = React.useState(false);
+  const [openSnackbar, setOpenSnackbar] = React.useState(false);
 
   const backendUrl = process.env.REACT_APP_BACKEND_BASE_URL;
 
@@ -36,6 +42,18 @@ const ActivityList = () => {
     getActivities();
   };
 
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
+
+  const notify = () => {
+    setOpenSnackbar(true);
+  };
+
   return (
     <Container maxWidth="md">
       <Box
@@ -54,7 +72,9 @@ const ActivityList = () => {
             marginY: "16px",
           }}
         >
-          <Typography variant="h2">Activity</Typography>
+          <Typography variant="h2" data-cy="activity-title">
+            Activity
+          </Typography>
         </Box>
         <Box
           sx={{
@@ -92,11 +112,26 @@ const ActivityList = () => {
             <ActivityCard
               key={activity.id}
               activity={activity}
+              notify={notify}
               refetch={getActivities}
             />
           ))
         )}
       </Box>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert
+          onClose={handleSnackbarClose}
+          severity="success"
+          sx={{ position: "fixed", bottom: "16px", left: "16px" }}
+          data-cy="modal-information"
+        >
+          Berhasil menghapus activity
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };

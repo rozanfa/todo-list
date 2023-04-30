@@ -1,14 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import {
-  Card,
-  CardActions,
-  CardContent,
-  Typography,
-} from "@mui/material";
+import { Card, CardActions, CardContent, Typography } from "@mui/material";
 import React from "react";
 import DeleteActivityDialog from "./DeleteActivityDialog";
 
-const ActivityCard = ({ activity, refetch }) => {
+const ActivityCard = ({ activity, notify, refetch }) => {
   let navigate = useNavigate();
   const dateOptions = { year: "numeric", month: "long", day: "numeric" };
   return (
@@ -61,7 +56,12 @@ const ActivityCard = ({ activity, refetch }) => {
             dateOptions
           )}
         </Typography>
-        <DeleteActivityDialog activity={activity} refetch={refetch} />
+        <DeleteActivityDialog
+          activity={activity}
+          notify={notify}
+          refetch={refetch}
+          data-cy="modal-delete"
+        />
       </CardActions>
     </Card>
   );

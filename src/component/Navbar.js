@@ -10,6 +10,7 @@ const Navbar = () => {
           color={"white"}
           fontSize="16px"
           fontWeight="bold"
+          data-cy="header-title"
         >
           TO DO LIST APP
         </Typography>
