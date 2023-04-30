@@ -2,16 +2,19 @@ import { Add } from "@mui/icons-material";
 import { Box, Button, Container, Typography } from "@mui/material";
 import React from "react";
 import ActivityCard from "../component/ActivityCard";
+import ActivityEmpty from "../asset/getting-started.png";
 
 const ActivityList = () => {
   const [activities, setActivities] = React.useState([]);
+  const [isLoaded, setIsLoaded] = React.useState(false);
 
   const backendUrl = process.env.REACT_APP_BACKEND_BASE_URL;
 
   const getActivities = async () => {
-    fetch(`${backendUrl}/activity-groups`)
+    await fetch(`${backendUrl}/activity-groups`)
       .then((response) => response.json())
       .then((data) => setActivities(data.data));
+    setIsLoaded(true);
   };
 
   React.useEffect(() => {
@@ -80,13 +83,17 @@ const ActivityList = () => {
           justifyContent: "center",
         }}
       >
-        {activities.map((activity) => (
-          <ActivityCard
-            key={activity.id}
-            activity={activity}
-            refetch={getActivities}
-          />
-        ))}
+        {isLoaded && activities.length === 0 ? (
+          <img src={ActivityEmpty} alt="Buat activity pertamamu" />
+        ) : (
+          activities.map((activity) => (
+            <ActivityCard
+              key={activity.id}
+              activity={activity}
+              refetch={getActivities}
+            />
+          ))
+        )}
       </Box>
     </Container>
   );

@@ -11,12 +11,14 @@ import AddTodoDialog from "../component/AddTodoDialog";
 import SortMenu from "../component/SortMenu";
 import TodoCard from "../component/TodoCard";
 import { useNavigate, useParams } from "react-router-dom";
+import TodosEmpty from "../asset/create-new-list.png";
 
 const TodoList = () => {
   const params = useParams();
   const [todos, setTodos] = React.useState([]);
   const [activity, setActivity] = React.useState({});
   const [sort, setSort] = React.useState("terbaru");
+  const [isLoaded, setIsLoaded] = React.useState(false);
 
   const handleSetSort = (value) => {
     setSort(value);
@@ -50,6 +52,7 @@ const TodoList = () => {
         setTodos(data.todo_items);
         setTitle(data.title);
       });
+    setIsLoaded(true);
   };
 
   React.useEffect(() => {
@@ -143,10 +146,17 @@ const TodoList = () => {
             marginBottom: "12px",
           },
         }}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
       >
-        {todos.map((todo) => (
-          <TodoCard key={todo.id} todo={todo} refetch={getActivityAndTodos} />
-        ))}
+        {isLoaded && todos.length === 0 ? (
+          <img src={TodosEmpty} alt="Buat item list kamu" />
+        ) : (
+          todos.map((todo) => (
+            <TodoCard key={todo.id} todo={todo} refetch={getActivityAndTodos} />
+          ))
+        )}
       </Box>
     </Container>
   );
