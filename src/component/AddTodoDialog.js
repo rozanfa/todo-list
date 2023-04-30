@@ -44,6 +44,9 @@ export default function AddTodoDialog({ activityId, refetch }) {
       body: JSON.stringify(data),
     });
 
+    setTitle("");
+    setPriority(null);
+
     refetch();
     handleClose();
   };
