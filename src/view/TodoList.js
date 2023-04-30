@@ -167,6 +167,7 @@ const TodoList = () => {
           ))
         )}
       </Box>
+      <div data-cy="modal-delete"></div>
     </Container>
   );
 };

@@ -3,12 +3,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import { DeleteOutline } from "@mui/icons-material";
-import {
-  Button,
-  DialogTitle,
-  IconButton,
-  Typography,
-} from "@mui/material";
+import { Button, DialogTitle, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Warning from "../asset/warning.png";
 
@@ -49,13 +44,7 @@ export default function DeleteActivityDialog({ activity, notify, refetch }) {
       >
         <DeleteOutline />
       </IconButton>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        maxWidth="xs"
-        fullWidth
-        data-cy="modal-delete"
-      >
+      <Dialog open={open} onClose={handleClose} maxWidth="xs" fullWidth>
         <DialogTitle
           justifyContent="space-between"
           display="flex"
@@ -93,6 +82,7 @@ export default function DeleteActivityDialog({ activity, notify, refetch }) {
           }}
         >
           <Button
+            data-cy="modal-delete-cancel-button"
             variant="contained"
             onClick={handleClose}
             sx={{
@@ -104,7 +94,6 @@ export default function DeleteActivityDialog({ activity, notify, refetch }) {
               },
               marginX: "12px",
             }}
-            data-cy="modal-delete-cancel-button"
           >
             Batal
           </Button>
